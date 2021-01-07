@@ -21,7 +21,7 @@ function emma_slider_enqueue_frontend() {
   global $post;
   if( has_block( 'emma/slider', $post ) ) {
     wp_enqueue_script( 'slider-library', $slider_library_js, [], $slider_version, true );
-    wp_enqueue_script( 'slider-frontend', $slider_frontend_js, [], $slider_version, true );
+    wp_enqueue_script( 'slider-frontend', $slider_frontend_js, ['slider-library'], $slider_version, true );
   }
 }
 add_action( 'wp_enqueue_scripts', 'emma_slider_enqueue_frontend' );
