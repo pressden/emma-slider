@@ -15,6 +15,7 @@ Text Domain: emma_slider
  */
 function emma_slider_enqueue_frontend() {
   $slider_library_js = plugin_dir_url( __FILE__ ) . 'vendor/glide/glide.min.js';
+  $slider_library_css = plugin_dir_url( __FILE__ ) . 'vendor/glide/glide.core.css';
   $slider_library_version = '3.4.1';
   
   $slider_frontend_js = plugin_dir_url( __FILE__ ) . 'js/slider-frontend.js';
@@ -23,6 +24,8 @@ function emma_slider_enqueue_frontend() {
   global $post;
   if( has_block( 'emma/slider', $post ) ) {
     wp_enqueue_script( 'slider-library', $slider_library_js, [], $slider_library_version, true );
+    wp_enqueue_style( 'slider-library', $slider_library_css, [], $slider_library_version );
+    
     wp_enqueue_script( 'slider-frontend', $slider_frontend_js, ['slider-library'], $slider_frontend_version, true );
   }
 }
