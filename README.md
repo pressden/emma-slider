@@ -4,8 +4,8 @@ This plugin adds a slider block to the Gutenberg Editor. It's intended to be use
 
 To use, perform the following steps:
 * clone this repo into `wp-content/plugins/`
-* in `\wp-content\themes\emma-child\src\sass\admin.scss`, add (or uncomment, if using a newer version of the `Emma Starter` repo): `@import "../../../../plugins/emma-dialog/sass/slider-editor";`
-* in `\wp-content\themes\emma-child\src\sass\theme.scss`, add (or uncomment, if using a newer version of the `Emma Starter` repo): `@import "../../../../plugins/emma-dialog/sass/slider-frontend";`
+* in `\wp-content\themes\emma-child\src\sass\admin.scss`, add (or uncomment, if using a newer version of the `Emma Starter` repo): `@import "../../../../plugins/emma-slider/sass/slider-editor";`
+* in `\wp-content\themes\emma-child\src\sass\theme.scss`, add (or uncomment, if using a newer version of the `Emma Starter` repo): `@import "../../../../plugins/emma-slider/sass/slider-frontend";`
 * if not already running, run `npm run watch` in the child theme to compile CSS
 * activate plugin in WordPress
 
