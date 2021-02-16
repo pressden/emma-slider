@@ -14,9 +14,9 @@ Text Domain: emma_slider
  * Register and conditionally enqueue frontend scripts
  */
 function emma_slider_enqueue_frontend() {
-  $slider_library_js = plugin_dir_url( __FILE__ ) . 'vendor/glide/glide.min.js';
-  $slider_library_css = plugin_dir_url( __FILE__ ) . 'vendor/glide/glide.core.css';
-  $slider_library_version = '3.4.1';
+  $slider_library_js = plugin_dir_url( __FILE__ ) . 'vendor/splide/js/splide.min.js';
+  $slider_library_css = plugin_dir_url( __FILE__ ) . 'vendor/splide/css/splide-core.min.css';
+  $slider_library_version = '2.4.21';
   
   $slider_frontend_js = plugin_dir_url( __FILE__ ) . 'js/slider-frontend.js';
   $slider_frontend_version = '1.0.0';

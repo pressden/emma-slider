@@ -1,3 +1,18 @@
+.splide__arrows {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.splide__arrow--prev {
+  transform: rotate( 180deg );
+}
+
+
 .glide__wrapper {
   position: relative;
 
