@@ -1,4 +1,8 @@
 ( function() {
+  document.addEventListener( 'DOMContentLoaded', function () {
+		new Splide( '.splide' ).mount();
+	} );
+
   document.querySelectorAll( '.glide__main' ).forEach( item => {
     var sliderSettings = JSON.parse( item.dataset.sliderSettings );
     var slider = new Glide( item, sliderSettings ).mount();

@@ -41,7 +41,7 @@
       },
       loopType: {
         type: 'string',
-        default: 'carousel',
+        default: 'loop',
       },
       autoplay: {
         type: 'number',
@@ -147,7 +147,7 @@
               label: 'Rewind to Start'
             },
             {
-              value: 'carousel',
+              value: 'loop',
               label: 'Infinitely Rotate'
             },
             {
@@ -465,15 +465,14 @@
           className: wrapperClasses,
         },
           el('div', {
-            className: "glide__main",
-            'data-slider-settings': JSON.stringify( settings ),
+            className: "splide",
+            'data-splide': JSON.stringify( settings ),
           },
             el('div', {
-              className: "glide__track",
-              'data-glide-el': 'track',
+              className: "splide__track",
             },
               el('ul', {
-                className: 'slider__inner-container glide__slides'
+                className: 'splide__list'
               },
                 el( InnerBlocks.Content, null )
               )
@@ -601,7 +600,7 @@
 
     save: function( props ) {
       return (
-        el( 'li', { className: "glide__slide", 'data-thumb': props.attributes.thumbnailURL },
+        el( 'li', { className: "splide__slide", 'data-thumb': props.attributes.thumbnailURL },
           el( InnerBlocks.Content, null )
         )
       );
