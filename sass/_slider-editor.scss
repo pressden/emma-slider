@@ -1,10 +1,12 @@
 // @TODO: BEGIN Convert to SASS & fix columns issue in admin
 
 .wp-block-emma-slider {
+  counter-reset: slide;
+
   > .block-editor-inner-blocks {
     > .block-editor-block-list__layout {
       display: grid;
-      grid-gap: 1rem;
+      grid-gap: $spacer-lg;
       align-items: stretch;
       justify-items: stretch;
       padding-left: 1rem;
@@ -13,10 +15,14 @@
       padding-bottom: 1rem;
 
       > .block-editor-block-list__block {
-        margin-top: -28px;
-        margin-bottom: -28px;
+        max-width: 100%;
       }
     }
+  }
+
+  .wp-block {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   @for $i from 2 through 5 {
@@ -30,21 +36,24 @@
   }
 }
 
-.wp-block-emma-slider > .editor-inner-blocks > .editor-block-list__layout > .wp-block .wp-block {
-  width: 100%;
-  max-width: unset;
-}
+[data-type="emma/slide"] {
+  position: relative;
+  min-width: 100%;
+  min-height: 22px;
+  border: 1px dashed $black;
 
-.wp-block-emma-slider > .editor-inner-blocks > .editor-block-list__layout > .wp-block > .editor-block-list__block-edit {
-  min-height: calc( 100% - 4px - 1.5rem );
-  margin-top: -14px;
-  margin-bottom: -14px;
-}
+  &::before {
+    counter-increment: slide;
+    content: 'Slide #' counter(slide);
+    position: absolute;
+    top: -1px;
+    left: 0;
+    padding: 2px 4px;
+    transform: translateY(-100%);
+    background-color: $gray-200;
+  }
 
-.wp-block-emma-slide > .editor-inner-blocks > .editor-block-list__layout {
-  padding: 1px 1rem;
-}
-
-.wp-block-emma-slider [data-type="emma/slide"] > .editor-block-list__insertion-point {
-  top: 0;
+  &.has-child-selected {
+    padding: $spacer;
+  }
 }
