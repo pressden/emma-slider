@@ -22,7 +22,7 @@ function emma_slider_enqueue_frontend() {
   $slider_frontend_version = '1.0.0';
 
   global $post;
-  if( has_block( 'emma/slider', $post ) ) {
+  if( has_block( 'emma/slider', $post ) || emma_slider_has_block_in_reusable_block( 'emma/slider' ) ) {
     wp_enqueue_script( 'slider-library', $slider_library_js, [], $slider_library_version, true );
     wp_enqueue_style( 'slider-library', $slider_library_css, [], $slider_library_version );
     
@@ -41,3 +41,29 @@ function emma_slider_enqueue_editor() {
   wp_enqueue_script( 'slider-editor', $slider_editor_js, ['wp-blocks','wp-editor'], $slider_editor_version, true );
 }
 add_action( 'enqueue_block_editor_assets', 'emma_slider_enqueue_editor' );
+
+//needed because `has_block` does not detect blocks within reusable blocks, for some reason
+function emma_slider_has_block_in_reusable_block( $block_name, $id = false ){
+  $id = (!$id) ? get_the_ID() : $id;
+  if( $id ){
+      if ( has_block( 'block', $id ) ){
+          // Check reusable blocks
+          $content = get_post_field( 'post_content', $id );
+          $blocks = parse_blocks( $content );
+
+          if ( ! is_array( $blocks ) || empty( $blocks ) ) {
+              return false;
+          }
+
+          foreach ( $blocks as $block ) {
+              if ( $block['blockName'] === 'core/block' && ! empty( $block['attrs']['ref'] ) ) {
+                  if( has_block( $block_name, $block['attrs']['ref'] ) ){
+                     return true;
+                  }
+              }
+          }
+      }
+  }
+
+  return false;
+}
