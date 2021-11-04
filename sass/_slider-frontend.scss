@@ -23,7 +23,7 @@
   .glide__slide {
     height: unset;
 
-    > *:last-of-type() {
+    > *:last-of-type {
       margin-bottom: 0;
     }
   }
