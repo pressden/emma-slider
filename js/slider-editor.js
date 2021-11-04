@@ -398,7 +398,7 @@
         },
           el('a', {
             href: "#",
-            className: "glide-control glide-control__previous",
+            className: "glide-control glide-control__previous lg-ignore",
             "data-glide-dir": "<"
           },
             el( 'span', {
@@ -409,7 +409,7 @@
           ),
           el('a', {
             href: "#",
-            className: "glide-control glide-control__next",
+            className: "glide-control glide-control__next lg-ignore",
             "data-glide-dir": ">"
           },
             el( 'span', {
@@ -435,7 +435,7 @@
           bullets.push(
             el( 'a', {
               href: "#",
-              className: "glide__bullet",
+              className: "glide__bullet lg-ignore",
               "data-glide-dir": "=" + i,
             },
               el( 'span', {
