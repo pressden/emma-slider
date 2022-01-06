@@ -19,7 +19,7 @@ function emma_slider_enqueue_frontend() {
 	global $post;
 	$slider_library_js = plugin_dir_url( __FILE__ ) . 'vendor/splide/js/splide.min.js';
 	$slider_library_css = plugin_dir_url( __FILE__ ) . 'vendor/splide/css/splide-core.min.css';
-	$slider_library_version = '2.4.21';
+	$slider_library_version = '3.6.9';
 	$slider_frontend_js = plugin_dir_url( __FILE__ ) . 'js/slider-frontend.js';
 	$slider_frontend_version = '1.0.0';
 
