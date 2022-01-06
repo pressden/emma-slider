@@ -1,59 +1,58 @@
 // @TODO: BEGIN Convert to SASS & fix columns issue in admin
-
 .wp-block-emma-slider {
-  counter-reset: slide;
+	counter-reset: slide;
 
-  > .block-editor-inner-blocks {
-    > .block-editor-block-list__layout {
-      display: grid;
-      grid-gap: $spacer-lg;
-      align-items: stretch;
-      justify-items: stretch;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+	> .block-editor-inner-blocks {
+		> .block-editor-block-list__layout {
+			display: grid;
+			grid-gap: $spacer-lg;
+			align-items: stretch;
+			justify-items: stretch;
+			padding-left: 1rem;
+			padding-right: 1rem;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
 
-      > .block-editor-block-list__block {
-        max-width: 100%;
-      }
-    }
-  }
+			> .block-editor-block-list__block {
+				max-width: 100%;
+			}
+		}
+	}
 
-  .wp-block {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+	.wp-block {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 
-  @for $i from 2 through 5 {
-    &.columns-#{$i} {
-      > .block-editor-inner-blocks {
-        > .block-editor-block-list__layout {
-          grid-template-columns: repeat( #{$i}, 1fr );
-        }
-      }
-    }
-  }
+	@for $i from 2 through 5 {
+		&.columns-#{$i} {
+			> .block-editor-inner-blocks {
+				> .block-editor-block-list__layout {
+					grid-template-columns: repeat( #{$i}, 1fr );
+				}
+			}
+		}
+	}
 }
 
 [data-type="emma/slide"] {
-  position: relative;
-  min-width: 100%;
-  min-height: 22px;
-  border: 1px dashed $black;
+	position: relative;
+	min-width: 100%;
+	min-height: 22px;
+	border: 1px dashed $black;
 
-  &::before {
-    counter-increment: slide;
-    content: 'Slide #' counter(slide);
-    position: absolute;
-    top: -1px;
-    left: 0;
-    padding: 2px 4px;
-    transform: translateY(-100%);
-    background-color: $gray-200;
-  }
+	&::before {
+		counter-increment: slide;
+		content: 'Slide #' counter(slide);
+		position: absolute;
+		top: -1px;
+		left: 0;
+		padding: 2px 4px;
+		transform: translateY(-100%);
+		background-color: $gray-200;
+	}
 
-  &.has-child-selected {
-    padding: $spacer;
-  }
+	&.has-child-selected {
+		padding: $spacer;
+	}
 }

@@ -1,123 +1,123 @@
 .splide__arrows {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  z-index: 1;
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	justify-content: space-between;
+	z-index: 1;
 }
 
 .splide__arrow--prev {
-  transform: rotate( 180deg );
+	transform: rotate( 180deg );
 }
 
-
 .glide__wrapper {
-  position: relative;
+	position: relative;
 
-  &.outer-glide-control {
-    padding-left: $spacer-xl;
-    padding-right: $spacer-xl;
-  }
+	&.outer-glide-control {
+		padding-left: $spacer-xl;
+		padding-right: $spacer-xl;
+	}
 }
 
 .glide__main {
-  a {
-    &:hover {
-      text-decoration: none !important;
-    }
-  }
+	a {
+		&:hover {
+			text-decoration: none !important;
+		}
+	}
 
-  .slider__inner-container {
-    margin-bottom: 0;
-  }
+	.slider__inner-container {
+		margin-bottom: 0;
+	}
 }
 
 .wp-block-emma-slider {
-  .glide__slide {
-    height: unset;
+	.glide__slide {
+		height: unset;
 
-    > *:last-of-type {
-      margin-bottom: 0;
-    }
-  }
+		> *:last-of-type {
+			margin-bottom: 0;
+		}
+	}
 }
 
 .wp-block-emma-slide {
-  > * {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: $content-max-width;
-  }
+	> * {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: $content-max-width;
+	}
 }
 
 .glide-control {
-  position: absolute;
-  top: 50%;
-  width: 40px;
-  height: 60px;
-  transform: translateY( -50% );
+	position: absolute;
+	top: 50%;
+	width: 40px;
+	height: 60px;
+	transform: translateY( -50% );
 
-  .dot-nav & {
-    top: calc( 50% - #{$spacer} );
-  }
+	.dot-nav & {
+		top: calc( 50% - #{$spacer} );
+	}
 
-  &::before {
-    @include icon-mask( 'arrow-left-alt2' );
-  }
+	&::before {
+		@include icon-mask( 'arrow-left-alt2' );
+	}
 
-  &.glide-control__previous {
-    left: 0;
-  }
+	&.glide-control__previous {
+		left: 0;
+	}
 
-  &.glide-control__next {
-    right: 0;
+	&.glide-control__next {
+		right: 0;
 
-    &:before {
-      transform: rotate( 180deg );
-    }
-  }
+		&:before {
+			transform: rotate( 180deg );
+		}
+	}
 }
 
 @each $name, $color in $editor-palette {
 	.has-#{$name}-arrow-color {
-    .glide-control {
-      color: $color;
+		.glide-control {
+			color: $color;
 
-      &:hover {
-        color: darken( $color, 15% );
-      }
-    }
+			&:hover {
+				color: darken( $color, 15% );
+			}
+		}
 	}
 }
 
 .glide__bullets {
-  display: flex;
-  justify-content: center;
-  margin-top: $spacer;
+	display: flex;
+	justify-content: center;
+	margin-top: $spacer;
 
-  .glide__bullet {
-    display: block;
-    height: $spacer;
-    width: $spacer;
-    margin-left: $spacer-xs;
-    margin-right: $spacer-xs;
-    border-radius: 50%;
-    background-color: $link-color;
-    opacity: 0.75;
+	.glide__bullet {
+		display: block;
+		height: $spacer;
+		width: $spacer;
+		margin-left: $spacer-xs;
+		margin-right: $spacer-xs;
+		border-radius: 50%;
+		background-color: $link-color;
+		opacity: 0.75;
 
-    &.glide__bullet--active {
-      opacity: 1;
-    }
+		&.glide__bullet--active {
+			opacity: 1;
+		}
 
-    &:hover,
-    &:focus {
-      background-color: $link-hover-color;
-    }
-  }
+		&:hover,
+		&:focus {
+			background-color: $link-hover-color;
+		}
+	}
 }
 
-.glide__slide--active { //fixes image flicker in slides after animation ends
-  z-index: 1;
+.glide__slide--active {
+	// fixes image flicker in slides after animation ends
+	z-index: 1;
 }
