@@ -48,7 +48,7 @@ add_action( 'enqueue_block_editor_assets', 'emma_slider_enqueue_editor' );
 
 // Needed because `has_block` does not detect blocks within reusable blocks, for some reason.
 function emma_slider_has_block_in_reusable_block( $block_name, $id = false ){
-	$id = (!$id) ? get_the_ID() : $id;
+	$id = ( ! $id ) ? get_the_ID() : $id;
 
 	if ( $id ) {
 		if ( has_block( 'block', $id ) ){

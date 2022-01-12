@@ -1,27 +1,49 @@
+/*
+.splide {
+	button {
+		background-color: transparent;
+		border: 0;
+		line-height: 0;
+
+		&:active,
+		&:focus {
+			box-shadow: none;
+		}
+	}
+}
+
 .splide__arrows {
 	position: absolute;
 	width: 100%;
-	top: 50%;
-	transform: translateY(-50%);
+	top: calc( 50% - 20px );
+	transform: translateY( -50% );
 	display: flex;
 	justify-content: space-between;
 	z-index: 1;
 }
 
+.splide__arrow {
+	&::before {
+		@include icon-mask( 'arrow-right-alt2' );
+	}
+}
+
 .splide__arrow--prev {
 	transform: rotate( 180deg );
 }
+*/
 
-.glide__wrapper {
+/*
+.splide__wrapper {
 	position: relative;
 
-	&.outer-glide-control {
+	&.outer-splide-control {
 		padding-left: $spacer-xl;
 		padding-right: $spacer-xl;
 	}
 }
 
-.glide__main {
+.splide__main {
 	a {
 		&:hover {
 			text-decoration: none !important;
@@ -34,7 +56,7 @@
 }
 
 .wp-block-emma-slider {
-	.glide__slide {
+	.splide__slide {
 		height: unset;
 
 		> *:last-of-type {
@@ -51,7 +73,7 @@
 	}
 }
 
-.glide-control {
+.splide-control {
 	position: absolute;
 	top: 50%;
 	width: 40px;
@@ -66,11 +88,11 @@
 		@include icon-mask( 'arrow-left-alt2' );
 	}
 
-	&.glide-control__previous {
+	&.splide-control__previous {
 		left: 0;
 	}
 
-	&.glide-control__next {
+	&.splide-control__next {
 		right: 0;
 
 		&:before {
@@ -78,10 +100,11 @@
 		}
 	}
 }
+*/
 
 @each $name, $color in $editor-palette {
 	.has-#{$name}-arrow-color {
-		.glide-control {
+		.splide-control {
 			color: $color;
 
 			&:hover {
@@ -91,12 +114,13 @@
 	}
 }
 
-.glide__bullets {
+/*
+.splide__bullets {
 	display: flex;
 	justify-content: center;
 	margin-top: $spacer;
 
-	.glide__bullet {
+	.splide__bullet {
 		display: block;
 		height: $spacer;
 		width: $spacer;
@@ -106,7 +130,7 @@
 		background-color: $link-color;
 		opacity: 0.75;
 
-		&.glide__bullet--active {
+		&.splide__bullet--active {
 			opacity: 1;
 		}
 
@@ -117,7 +141,8 @@
 	}
 }
 
-.glide__slide--active {
+.splide__slide--active {
 	// fixes image flicker in slides after animation ends
 	z-index: 1;
 }
+*/

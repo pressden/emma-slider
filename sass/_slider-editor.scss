@@ -1,5 +1,6 @@
 // @TODO: BEGIN Convert to SASS & fix columns issue in admin
 .wp-block-emma-slider {
+	/*
 	counter-reset: slide;
 
 	> .block-editor-inner-blocks {
@@ -23,6 +24,7 @@
 		margin-top: 0;
 		margin-bottom: 0;
 	}
+	*/
 
 	@for $i from 2 through 5 {
 		&.columns-#{$i} {
@@ -35,6 +37,7 @@
 	}
 }
 
+/*
 [data-type="emma/slide"] {
 	position: relative;
 	min-width: 100%;
@@ -56,3 +59,4 @@
 		padding: $spacer;
 	}
 }
+*/
