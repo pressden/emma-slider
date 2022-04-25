@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "emma/faq",
+	"version": "0.1.0",
+	"title": "FAQ",
+	"category": "widgets",
+	"description": "Example block written with ESNext standard and JSX support – build step required.",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"anchor": true,
+		"html": false,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"textdomain": "emma-faq",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}

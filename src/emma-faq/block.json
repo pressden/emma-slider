@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "emma/faq",
+	"version": "0.1.0",
+	"title": "FAQ",
+	"category": "widgets",
+	"description": "An FAQ block that outputs rich text schema via Yoast SEO.",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"anchor": true,
+		"html": false,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"textdomain": "emma-faq",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css"
+}
