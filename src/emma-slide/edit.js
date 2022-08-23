@@ -32,16 +32,14 @@ import './editor.scss';
 export default function Edit() {
 	const blockProps = useBlockProps();
 	const BLOCK_TEMPLATE = [ 
-		[ 'core/heading', { placeholder: 'Question' } ],
-		[ 'emma/answer', {} ]
+		[ 'core/paragraph', { placeholder: 'Slide Content' } ]
 	];
 
 	return (
-		<div { ...blockProps }>
+		<li { ...blockProps }>
 			<InnerBlocks
 				template={ BLOCK_TEMPLATE }
-				templateLock='all'
 			/>
-		</div>
+		</li>
 	);
 }

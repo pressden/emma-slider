@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "emma/slider",
+	"version": "0.1.0",
+	"title": "Slider",
+	"category": "widgets",
+	"description": "A slider block.",
+	"attributes": {
+		"loopType": {
+			"type": "string",
+			"default": "slide"
+		},
+		"autoplayInterval": {
+			"type": "number"
+		},
+		"slideGap": {
+			"type": "string"
+		},
+		"arrowColor": {
+			"type": "string"
+		},
+		"customArrowColor": {
+			"type": "string"
+		},
+		"paginationColor": {
+			"type": "string"
+		},
+		"customPaginationColor": {
+			"type": "string"
+		},
+		"currentPageColor": {
+			"type": "string"
+		},
+		"customCurrentPageColor": {
+			"type": "string"
+		},
+		"settingsJSON": {
+			"type": "string",
+			"default": ""
+		},
+		"slidesPerPageDesktop": {
+			"type": "integer"
+		},
+		"slidesPerPageTablet": {
+			"type": "integer"
+		},
+		"slidesPerPageMobile": {
+			"type": "integer"
+		},
+		"showArrows": {
+			"type": "boolean",
+			"default": "true"
+		},
+		"outerArrows": {
+			"type": "boolean",
+			"default": "false"
+		},
+		"showPagination": {
+			"type": "boolean",
+			"default": "false"
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"anchor": true,
+		"html": false,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		}
+	},
+	"textdomain": "emma-slider",
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}

@@ -1,14 +1,15 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "emma/faq",
+	"name": "emma/slide",
 	"version": "0.1.0",
-	"title": "FAQ",
+	"title": "Slide",
 	"category": "widgets",
+	"parent": [ "emma/slider" ],
 	"description": "Example block written with ESNext standard and JSX support – build step required.",
 	"supports": {
+		"inserter": false,
 		"align": [ "wide", "full" ],
-		"anchor": true,
 		"html": false,
 		"color": {
 			"gradients": true,
@@ -19,7 +20,7 @@
 			}
 		}
 	},
-	"textdomain": "emma-faq",
+	"textdomain": "emma-slider",
 	"editorScript": "file:./index.js",
-	"style": "file:./style-index.css"
+	"editorStyle": "file:./index.css"
 }

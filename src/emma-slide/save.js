@@ -23,10 +23,13 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save() {
-	const blockProps = useBlockProps.save(); 
+	const blockProps = useBlockProps.save( {
+		className: 'splide__slide'
+	} );
+
 	return (
-		<div { ...blockProps }>
+		<li { ...blockProps }>
 			<InnerBlocks.Content />
-		</div>
+		</li>
 	);
 }
