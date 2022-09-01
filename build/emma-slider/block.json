@@ -50,15 +50,15 @@
 		},
 		"showArrows": {
 			"type": "boolean",
-			"default": "true"
+			"default": true
 		},
 		"outerArrows": {
 			"type": "boolean",
-			"default": "false"
+			"default": false
 		},
 		"showPagination": {
 			"type": "boolean",
-			"default": "false"
+			"default": false
 		}
 	},
 	"supports": {

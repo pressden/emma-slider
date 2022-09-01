@@ -13,7 +13,8 @@ import { __ } from '@wordpress/i18n';
  */
 import { compose } from '@wordpress/compose';
 import { InnerBlocks, useBlockProps, InspectorControls, PanelColorSettings, withColors } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextareaControl, ColorPalette, Flex, FlexBlock, FlexItem, TextControl, __experimentalNumberControl as NumberControl, Icon, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { PanelBody, SelectControl, TextareaControl, ToggleControl, Flex, FlexBlock, FlexItem, TextControl, __experimentalNumberControl as NumberControl, Icon, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -46,6 +47,7 @@ function SliderEdit( {
 		[ 'emma/slide', {} ]
 	];
 	var html = ( html ) => wp.element.RawHTML( { children: html } );
+	const colors = useSelect('core/block-editor').getSettings().colors;
 
 	return (
 		<>
@@ -134,6 +136,34 @@ function SliderEdit( {
 							phone
 						</FlexItem>
 					</Flex>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Slide Navigation Options' ) }
+				>
+					<ToggleControl
+						label={ __( 'Show Arrow Navigation' ) }
+						help={ __( 'Shows the left/right navigation arrows.' ) }
+						checked={ attributes.showArrows }
+						onChange={ ( value ) => {
+							setAttributes( { showArrows: value } )
+						} }
+					/>
+					<ToggleControl
+						label={ __( 'Outer Arrows' ) }
+						help={ __( 'Adds side margin to slider so arrows are outside of slides.' ) }
+						checked={ attributes.outerArrows }
+						onChange={ ( value ) => {
+							setAttributes( { outerArrows: value } )
+						} }
+					/>
+					<ToggleControl
+						label={ __( 'Show Pagination' ) }
+						help={ __( 'Shows the pagination dots underneath the slider.' ) }
+						checked={ attributes.showPagination }
+						onChange={ ( value ) => {
+							setAttributes( { showPagination: value } )
+						} }
+					/>
 				</PanelBody>
 				<PanelColorSettings
 					title={ __( 'Slide Navigation Colors' ) }

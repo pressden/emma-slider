@@ -27,14 +27,18 @@
 		className: 'splide'
 	} ); 
 
-	var arrowColor = {};
+	var navigationColors = {};
 	if( attributes.arrowColor ) {
 		var colorObject = wp.blockEditor.getColorObjectByColorValue( wp.data.select( "core/editor" ).getEditorSettings().colors, attributes.arrowColor );
 		// console.log( attributes.arrowColor );
 		// blockProps = useBlockProps.save( {
 		// 	className: 'test-' + colorObject.slug
 		// } );
-		arrowColor = { '--emma-arrow-color': 'var( --wp--preset--color--' + attributes.arrowColor + ')' };
+		navigationColors = {
+			'--emma-slider--arrow-color': 'var( --wp--preset--color--' + attributes.arrowColor + ')',
+			'--emma-slider--pagination-color': 'var( --wp--preset--color--' + attributes.paginationColor + ')',
+			'--emma-slider--current-page-color': 'var( --wp--preset--color--' + attributes.currentPageColor + ')'
+		};
 	}
  
 	/**
@@ -86,7 +90,7 @@
 	}
  
 	 return (
-		 <div { ...blockProps } style={ arrowColor } role="group" data-slider-settings={ JSON.stringify( settings ) }>
+		 <div { ...blockProps } style={ navigationColors } role="group" data-slider-settings={ JSON.stringify( settings ) }>
 			 <div class="splide__track">
 				 <ul class="splide__list">
 					 <InnerBlocks.Content />

@@ -178,7 +178,7 @@
   top: 50%;
   z-index: 1;
   padding: 0;
-  color: var(--emma-arrow-color, inherit);
+  color: var(--emma-slider--arrow-color, white);
   background-color: transparent;
   border: 0;
 }
@@ -206,11 +206,17 @@
 }
 
 .splide__pagination__page {
+  position: relative;
+  color: var(--emma-slider--pagination-color, gray);
   background-color: currentColor;
   border-radius: 50%;
   border: 0;
   height: 1rem;
   width: 1rem;
+}
+.splide__pagination__page.is-active {
+  z-index: 1;
+  color: var(--emma-slider--current-page-color, black);
 }
 
 .wp-block-emma-slide > :last-child {
