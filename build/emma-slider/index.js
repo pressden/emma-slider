@@ -429,8 +429,16 @@ function save(_ref) {
     };
   }
 
+  var paginationPlaceholder = '';
+
+  if (attributes.showPagination) {
+    paginationPlaceholder = '<ul class="splide__pagination"></ul>';
+  } else {
+    settings.pagination = false;
+  }
+
   if (attributes.autoplayInterval > 0) {
-    settings.autoplay = 'true';
+    settings.autoplay = true;
     settings.interval = attributes.autoplayInterval * 1000;
   }
 
@@ -445,10 +453,16 @@ function save(_ref) {
     role: "group",
     "data-slider-settings": JSON.stringify(settings)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    style: "position: relative"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    class: "splide__arrows"
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     class: "splide__track"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
     class: "splide__list"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null))));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)))), attributes.showPagination ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
+    class: "splide__pagination"
+  }) : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('', 'emma-slider'));
 }
 
 /***/ }),

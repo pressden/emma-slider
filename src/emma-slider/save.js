@@ -79,8 +79,15 @@
 		}
 	}
 
+	var paginationPlaceholder = '';
+	if( attributes.showPagination ) {
+		paginationPlaceholder = '<ul class="splide__pagination"></ul>';
+	} else {
+		settings.pagination = false;
+	}
+
 	if( attributes.autoplayInterval > 0 ) {
-		settings.autoplay = 'true';
+		settings.autoplay = true;
 		settings.interval = attributes.autoplayInterval * 1000
 	}
  
@@ -89,14 +96,21 @@
 		Object.assign( settings, JSON.parse( manualSettings ) );
 	}
  
-	 return (
-		 <div { ...blockProps } style={ navigationColors } role="group" data-slider-settings={ JSON.stringify( settings ) }>
-			 <div class="splide__track">
-				 <ul class="splide__list">
-					 <InnerBlocks.Content />
-				 </ul>
-			 </div>
-		 </div>
-	 );
- }
- 
+	return (
+		<div { ...blockProps } style={ navigationColors } role="group" data-slider-settings={ JSON.stringify( settings ) }>
+			<div style="position: relative">
+    		<div class="splide__arrows"></div>
+				<div class="splide__track">
+					<ul class="splide__list">
+						<InnerBlocks.Content />
+					</ul>
+			 	</div>
+			</div>
+			{ attributes.showPagination ? (
+					<ul class="splide__pagination"></ul>
+			) : (
+					__( '', 'emma-slider' )
+			) }
+		</div>
+	);
+}
