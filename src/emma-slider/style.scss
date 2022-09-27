@@ -2,7 +2,14 @@
 
 .splide {
 	position: relative;
-	padding-bottom: 2rem;
+
+	&.has-pagination {
+		padding-bottom: 2rem;
+	}
+
+	&.has-outer-arrows {
+		width: calc( 100% - var(--layout-spacer-x) * 2 - 70px );
+	}
 
 	button {
 		&.ignore-theme {
@@ -23,7 +30,7 @@
 	top: 50%;
 	z-index: 1;
 	padding: 0;
-	color: var( --emma-slider--arrow-color, white );
+	color: var( --emma-slider--arrow-color, black );
 	background-color: transparent;
 	border: 0;
 
@@ -35,11 +42,19 @@
 .splide__arrow--prev {
 	left: 1rem;
 	transform: scaleX( -1 ) translateY( -50% );
+
+	.has-outer-arrows & {
+		left: -40px;
+	}
 }
 
 .splide__arrow--next {
 	right: 1rem;
 	transform: translateY( -50% );
+	
+	.has-outer-arrows & {
+		right: -40px;
+	}
 }
 
 .splide__pagination {

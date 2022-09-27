@@ -3786,11 +3786,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.wp-block-emma-slider').forEach(slider => {
-    var sliderSettings = JSON.parse(slider.dataset.sliderSettings);
-    sliderSettings.classes = {
+  var defaultSliderSettings = {
+    classes: {
       arrow: 'splide__arrow ignore-theme',
       page: 'splide__pagination__page ignore-theme'
+    },
+    rewind: true
+  };
+  document.querySelectorAll('.wp-block-emma-slider').forEach(slider => {
+    let sliderSettings = { ...defaultSliderSettings,
+      ...JSON.parse(slider.dataset.sliderSettings)
     };
     new _splidejs_splide__WEBPACK_IMPORTED_MODULE_0__["default"](slider, sliderSettings).mount();
   });

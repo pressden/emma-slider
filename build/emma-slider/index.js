@@ -107,6 +107,70 @@ function SliderEdit(_ref) {
   });
 
   const colors = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_6__.useSelect)('core/block-editor').getSettings().colors;
+
+  function SlidesPerPage() {
+    if (attributes.type == 'fade') {
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", null, "Sliders using the Fade animation cannot show more than one slide per page.");
+    }
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
+      justify: "flex-start",
+      style: {
+        'margin-bottom': '0.5rem'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
+      icon: 'desktop'
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, {
+      style: {
+        width: '130px'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalNumberControl, {
+      value: attributes.slidesPerPageDesktop,
+      placeholder: '1',
+      isDragEnabled: false,
+      onChange: value => setAttributes({
+        slidesPerPageDesktop: parseInt(value) || ''
+      })
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexBlock, null, "desktop")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
+      justify: "flex-start",
+      style: {
+        'margin-bottom': '0.5rem'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
+      icon: 'tablet'
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, {
+      style: {
+        width: '130px'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalNumberControl, {
+      value: attributes.slidesPerPageTablet,
+      placeholder: 'same as desktop',
+      isDragEnabled: false,
+      onChange: value => setAttributes({
+        slidesPerPageTablet: parseInt(value) || ''
+      })
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, "tablet")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
+      justify: "flex-start"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
+      icon: 'smartphone'
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, {
+      style: {
+        width: '130px'
+      }
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalNumberControl, {
+      value: attributes.slidesPerPageMobile,
+      placeholder: 'same as tablet',
+      isDragEnabled: false,
+      onChange: value => setAttributes({
+        slidesPerPageMobile: parseInt(value) || ''
+      })
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, "phone")));
+  }
+
+  const handleOnChange = unprocessedValue => {
+    onChange(unprocessedValue.all);
+  };
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('General Settings')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
@@ -121,9 +185,9 @@ function SliderEdit(_ref) {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Fade'),
       value: 'fade'
     }],
-    value: attributes.loopType,
+    value: attributes.type,
     onChange: value => setAttributes({
-      loopType: value
+      type: value
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Autoplay Timer (seconds)'),
@@ -134,61 +198,21 @@ function SliderEdit(_ref) {
     onChange: value => setAttributes({
       autoplayInterval: parseFloat(value) || ''
     })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.__experimentalSpacingSizesControl, {
+    values: {
+      all: attributes.slideGap
+    },
+    onChange: values => setAttributes({
+      slideGap: values.all
+    }),
+    label: 'Gap Between Slides',
+    sides: ['all'],
+    allowReset: false,
+    splitOnAxis: false
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Slides per Page'),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
-    justify: "flex-start",
-    style: {
-      'margin-bottom': '0.5rem'
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
-    icon: 'desktop'
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, {
-    style: {
-      width: '130px'
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalNumberControl, {
-    value: attributes.slidesPerPageDesktop,
-    placeholder: '1',
-    isDragEnabled: false,
-    onChange: value => setAttributes({
-      slidesPerPageDesktop: parseInt(value) || ''
-    })
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexBlock, null, "desktop")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
-    justify: "flex-start",
-    style: {
-      'margin-bottom': '0.5rem'
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
-    icon: 'tablet'
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, {
-    style: {
-      width: '130px'
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalNumberControl, {
-    value: attributes.slidesPerPageTablet,
-    placeholder: 'same as desktop',
-    isDragEnabled: false,
-    onChange: value => setAttributes({
-      slidesPerPageTablet: parseInt(value) || ''
-    })
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, "tablet")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Flex, {
-    justify: "flex-start"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
-    icon: 'smartphone'
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, {
-    style: {
-      width: '130px'
-    }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalNumberControl, {
-    value: attributes.slidesPerPageMobile,
-    placeholder: 'same as tablet',
-    isDragEnabled: false,
-    onChange: value => setAttributes({
-      slidesPerPageMobile: parseInt(value) || ''
-    })
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, "phone"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SlidesPerPage, null)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Slide Navigation Options')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Show Arrow Navigation'),
@@ -199,7 +223,7 @@ function SliderEdit(_ref) {
         showArrows: value
       });
     }
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+  }), attributes.showArrows && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Outer Arrows'),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Adds side margin to slider so arrows are outside of slides.'),
     checked: attributes.outerArrows,
@@ -366,17 +390,10 @@ function save(_ref) {
   let {
     attributes
   } = _ref;
-  var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
-    className: 'splide'
-  });
+  var blockClassNames = ['splide'];
   var navigationColors = {};
 
   if (attributes.arrowColor) {
-    var colorObject = wp.blockEditor.getColorObjectByColorValue(wp.data.select("core/editor").getEditorSettings().colors, attributes.arrowColor); // console.log( attributes.arrowColor );
-    // blockProps = useBlockProps.save( {
-    // 	className: 'test-' + colorObject.slug
-    // } );
-
     navigationColors = {
       '--emma-slider--arrow-color': 'var( --wp--preset--color--' + attributes.arrowColor + ')',
       '--emma-slider--pagination-color': 'var( --wp--preset--color--' + attributes.paginationColor + ')',
@@ -404,7 +421,7 @@ function save(_ref) {
   var settings = {};
   /** define loop type of slider */
 
-  settings.type = attributes.loopType;
+  settings.type = attributes.type;
   /** define how many slides per page, including breakpoints if needed */
 
   settings.perMove = 1;
@@ -429,12 +446,18 @@ function save(_ref) {
     };
   }
 
-  var paginationPlaceholder = '';
-
   if (attributes.showPagination) {
-    paginationPlaceholder = '<ul class="splide__pagination"></ul>';
+    blockClassNames.push('has-pagination');
   } else {
     settings.pagination = false;
+  }
+
+  if (!attributes.showArrows) {
+    settings.arrows = false;
+  }
+
+  if (attributes.outerArrows) {
+    blockClassNames.push('has-outer-arrows');
   }
 
   if (attributes.autoplayInterval > 0) {
@@ -448,21 +471,24 @@ function save(_ref) {
     Object.assign(settings, JSON.parse(manualSettings));
   }
 
+  var blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save({
+    className: blockClassNames.join(' ')
+  });
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, blockProps, {
     style: navigationColors,
     role: "group",
     "data-slider-settings": JSON.stringify(settings)
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     style: "position: relative"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }, attributes.showArrows && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     class: "splide__arrows"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     class: "splide__track"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
     class: "splide__list"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)))), attributes.showPagination ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks.Content, null)))), attributes.showPagination && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
     class: "splide__pagination"
-  }) : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('', 'emma-slider'));
+  }));
 }
 
 /***/ }),

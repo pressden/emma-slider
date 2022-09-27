@@ -1,12 +1,18 @@
 import Splide from '@splidejs/splide';
 
 document.addEventListener( 'DOMContentLoaded', function() {
+	var defaultSliderSettings = {
+		classes: {
+			arrow: 'splide__arrow ignore-theme',
+			page: 'splide__pagination__page ignore-theme'
+		},
+		rewind: true
+	}
 	document.querySelectorAll( '.wp-block-emma-slider' ).forEach( slider => {
-		var sliderSettings = JSON.parse( slider.dataset.sliderSettings );
-		sliderSettings.classes = {
-			arrow : 'splide__arrow ignore-theme',
-			page  : 'splide__pagination__page ignore-theme',
-		}
+		let sliderSettings = { 
+			...defaultSliderSettings,
+			...JSON.parse( slider.dataset.sliderSettings )
+		};
 		new Splide( slider, sliderSettings ).mount();
 	} );
 } );

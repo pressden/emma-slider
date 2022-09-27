@@ -23,17 +23,9 @@
 	* @return {WPElement} Element to render.
 	*/
  export default function save( { attributes } ) {
-	var blockProps = useBlockProps.save( {
-		className: 'splide'
-	} ); 
-
+	var blockClassNames = [ 'splide' ];
 	var navigationColors = {};
 	if( attributes.arrowColor ) {
-		var colorObject = wp.blockEditor.getColorObjectByColorValue( wp.data.select( "core/editor" ).getEditorSettings().colors, attributes.arrowColor );
-		// console.log( attributes.arrowColor );
-		// blockProps = useBlockProps.save( {
-		// 	className: 'test-' + colorObject.slug
-		// } );
 		navigationColors = {
 			'--emma-slider--arrow-color': 'var( --wp--preset--color--' + attributes.arrowColor + ')',
 			'--emma-slider--pagination-color': 'var( --wp--preset--color--' + attributes.paginationColor + ')',
@@ -58,7 +50,7 @@
 	var settings = {};
 	 
 	/** define loop type of slider */
-	settings.type = attributes.loopType;
+	settings.type = attributes.type;
 	 
 	/** define how many slides per page, including breakpoints if needed */
 	settings.perMove = 1;
@@ -79,11 +71,18 @@
 		}
 	}
 
-	var paginationPlaceholder = '';
 	if( attributes.showPagination ) {
-		paginationPlaceholder = '<ul class="splide__pagination"></ul>';
+		blockClassNames.push( 'has-pagination' );
 	} else {
 		settings.pagination = false;
+	}
+
+	if( ! attributes.showArrows ) {
+		settings.arrows = false;
+	}
+
+	if( attributes.outerArrows ) {
+		blockClassNames.push( 'has-outer-arrows' );
 	}
 
 	if( attributes.autoplayInterval > 0 ) {
@@ -95,22 +94,26 @@
 	if( isJSONString( manualSettings ) ) {
 		Object.assign( settings, JSON.parse( manualSettings ) );
 	}
+
+	var blockProps = useBlockProps.save( {
+		className: blockClassNames.join(' '),
+	} ); 
  
 	return (
 		<div { ...blockProps } style={ navigationColors } role="group" data-slider-settings={ JSON.stringify( settings ) }>
 			<div style="position: relative">
-    		<div class="splide__arrows"></div>
+				{ 
+					attributes.showArrows && <div class="splide__arrows"></div>
+				}
 				<div class="splide__track">
 					<ul class="splide__list">
 						<InnerBlocks.Content />
 					</ul>
 			 	</div>
 			</div>
-			{ attributes.showPagination ? (
-					<ul class="splide__pagination"></ul>
-			) : (
-					__( '', 'emma-slider' )
-			) }
+			{ 
+				attributes.showPagination && <ul class="splide__pagination"></ul>
+			}
 		</div>
 	);
 }

@@ -12,8 +12,8 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 import { compose } from '@wordpress/compose';
-import { InnerBlocks, useBlockProps, InspectorControls, PanelColorSettings, withColors } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextareaControl, ToggleControl, Flex, FlexBlock, FlexItem, TextControl, __experimentalNumberControl as NumberControl, Icon, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { InnerBlocks, useBlockProps, InspectorControls, PanelColorSettings, withColors, __experimentalSpacingSizesControl as SpacingSizesControl, isValueSpacingPreset } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, TextareaControl, ToggleControl, Flex, FlexBlock, FlexItem, TextControl, __experimentalNumberControl as NumberControl, Icon } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 
 /**
@@ -49,6 +49,77 @@ function SliderEdit( {
 	var html = ( html ) => wp.element.RawHTML( { children: html } );
 	const colors = useSelect('core/block-editor').getSettings().colors;
 
+	function SlidesPerPage() {
+		if( attributes.type == 'fade' ) {
+			return (
+				<p>Sliders using the Fade animation cannot show more than one slide per page.</p>
+			)
+		}
+
+		return (
+			<div>
+				<Flex justify='flex-start' style={{ 'margin-bottom': '0.5rem' }}>
+					<FlexItem>
+						<Icon icon={ 'desktop' } />
+					</FlexItem>
+					<FlexItem style={{ width: '130px' }}>
+						<NumberControl
+							value={ attributes.slidesPerPageDesktop }
+							placeholder={ '1' }
+							isDragEnabled={ false }
+							onChange={ ( value ) =>
+								setAttributes( { slidesPerPageDesktop: parseInt( value ) || '' } )
+							}
+						/>
+					</FlexItem>
+					<FlexBlock>
+						desktop
+					</FlexBlock>
+				</Flex>
+				<Flex justify='flex-start' style={{ 'margin-bottom': '0.5rem' }}>
+				<FlexItem>
+					<Icon icon={ 'tablet' } />
+				</FlexItem>
+					<FlexItem style={{ width: '130px' }}>
+						<NumberControl
+							value={ attributes.slidesPerPageTablet }
+							placeholder={ 'same as desktop' }
+							isDragEnabled={ false }
+							onChange={ ( value ) =>
+								setAttributes( { slidesPerPageTablet: parseInt( value ) || '' } )
+							}
+						/>
+					</FlexItem>
+					<FlexItem>
+						tablet
+					</FlexItem>
+				</Flex>
+				<Flex justify='flex-start'>
+					<FlexItem>
+						<Icon icon={ 'smartphone' } />
+					</FlexItem>
+					<FlexItem style={{ width: '130px' }}>
+						<NumberControl
+							value={ attributes.slidesPerPageMobile }
+							placeholder={ 'same as tablet' }
+							isDragEnabled={ false }
+							onChange={ ( value ) =>
+								setAttributes( { slidesPerPageMobile: parseInt( value ) || '' } )
+							}
+						/>
+					</FlexItem>
+					<FlexItem>
+						phone
+					</FlexItem>
+				</Flex>
+			</div>
+		)
+	}
+
+	const handleOnChange = ( unprocessedValue ) => {
+		onChange( unprocessedValue.all );
+	};
+
 	return (
 		<>
 			<InspectorControls>
@@ -62,9 +133,9 @@ function SliderEdit( {
 							{ label: __( 'Loop' ), value: 'loop' },
 							{ label: __( 'Fade' ), value: 'fade' },
 						] }
-						value={ attributes.loopType }
+						value={ attributes.type }
 						onChange={ ( value ) =>
-							setAttributes( { loopType: value } )
+							setAttributes( { type: value } )
 						}
 					/>
 					<TextControl
@@ -77,65 +148,22 @@ function SliderEdit( {
 							setAttributes( { autoplayInterval: parseFloat( value ) || '' } )
 						}
 					/>
+					<SpacingSizesControl
+						values={ { all: attributes.slideGap } }
+						onChange={ ( values ) => 
+							setAttributes( { slideGap: values.all } )
+						}
+						label={ 'Gap Between Slides' }
+						sides={ [ 'all' ] }
+						allowReset={ false }
+						splitOnAxis={ false }
+					/>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Slides per Page' ) }
 					initialOpen={ false }
 				>
-					<Flex justify='flex-start' style={{ 'margin-bottom': '0.5rem' }}>
-						<FlexItem>
-							<Icon icon={ 'desktop' } />
-						</FlexItem>
-						<FlexItem style={{ width: '130px' }}>
-							<NumberControl
-								value={ attributes.slidesPerPageDesktop }
-								placeholder={ '1' }
-								isDragEnabled={ false }
-								onChange={ ( value ) =>
-									setAttributes( { slidesPerPageDesktop: parseInt( value ) || '' } )
-								}
-							/>
-						</FlexItem>
-						<FlexBlock>
-							desktop
-						</FlexBlock>
-					</Flex>
-					<Flex justify='flex-start' style={{ 'margin-bottom': '0.5rem' }}>
-					<FlexItem>
-						<Icon icon={ 'tablet' } />
-					</FlexItem>
-						<FlexItem style={{ width: '130px' }}>
-							<NumberControl
-								value={ attributes.slidesPerPageTablet }
-								placeholder={ 'same as desktop' }
-								isDragEnabled={ false }
-								onChange={ ( value ) =>
-									setAttributes( { slidesPerPageTablet: parseInt( value ) || '' } )
-								}
-							/>
-						</FlexItem>
-						<FlexItem>
-							tablet
-						</FlexItem>
-					</Flex>
-					<Flex justify='flex-start'>
-						<FlexItem>
-							<Icon icon={ 'smartphone' } />
-						</FlexItem>
-						<FlexItem style={{ width: '130px' }}>
-							<NumberControl
-								value={ attributes.slidesPerPageMobile }
-								placeholder={ 'same as tablet' }
-								isDragEnabled={ false }
-								onChange={ ( value ) =>
-									setAttributes( { slidesPerPageMobile: parseInt( value ) || '' } )
-								}
-							/>
-						</FlexItem>
-						<FlexItem>
-							phone
-						</FlexItem>
-					</Flex>
+					<SlidesPerPage/>
 				</PanelBody>
 				<PanelBody
 					title={ __( 'Slide Navigation Options' ) }
@@ -148,14 +176,17 @@ function SliderEdit( {
 							setAttributes( { showArrows: value } )
 						} }
 					/>
-					<ToggleControl
-						label={ __( 'Outer Arrows' ) }
-						help={ __( 'Adds side margin to slider so arrows are outside of slides.' ) }
-						checked={ attributes.outerArrows }
-						onChange={ ( value ) => {
-							setAttributes( { outerArrows: value } )
-						} }
-					/>
+					{ 
+						attributes.showArrows && 
+						<ToggleControl
+							label={ __( 'Outer Arrows' ) }
+							help={ __( 'Adds side margin to slider so arrows are outside of slides.' ) }
+							checked={ attributes.outerArrows }
+							onChange={ ( value ) => {
+								setAttributes( { outerArrows: value } )
+							} }
+						/>
+					}
 					<ToggleControl
 						label={ __( 'Show Pagination' ) }
 						help={ __( 'Shows the pagination dots underneath the slider.' ) }

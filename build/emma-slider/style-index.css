@@ -162,7 +162,12 @@
 
 .splide {
   position: relative;
+}
+.splide.has-pagination {
   padding-bottom: 2rem;
+}
+.splide.has-outer-arrows {
+  width: calc(100% - var(--layout-spacer-x) * 2 - 70px);
 }
 .splide button.ignore-theme {
   cursor: pointer;
@@ -179,7 +184,7 @@
   top: 50%;
   z-index: 1;
   padding: 0;
-  color: var(--emma-slider--arrow-color, white);
+  color: var(--emma-slider--arrow-color, black);
   background-color: transparent;
   border: 0;
 }
@@ -191,10 +196,16 @@
   left: 1rem;
   transform: scaleX(-1) translateY(-50%);
 }
+.has-outer-arrows .splide__arrow--prev {
+  left: -40px;
+}
 
 .splide__arrow--next {
   right: 1rem;
   transform: translateY(-50%);
+}
+.has-outer-arrows .splide__arrow--next {
+  right: -40px;
 }
 
 .splide__pagination {
