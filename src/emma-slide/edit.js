@@ -36,10 +36,10 @@ export default function Edit() {
 	];
 
 	return (
-		<li { ...blockProps }>
+		<div { ...blockProps }>
 			<InnerBlocks
 				template={ BLOCK_TEMPLATE }
 			/>
-		</li>
+		</div>
 	);
 }

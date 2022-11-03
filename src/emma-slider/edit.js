@@ -12,8 +12,8 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 import { compose } from '@wordpress/compose';
-import { InnerBlocks, useBlockProps, InspectorControls, PanelColorSettings, withColors, __experimentalSpacingSizesControl as SpacingSizesControl, isValueSpacingPreset } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextareaControl, ToggleControl, Flex, FlexBlock, FlexItem, TextControl, __experimentalNumberControl as NumberControl, Icon } from '@wordpress/components';
+import { InnerBlocks, useBlockProps, useInnerBlocksProps, InspectorControls, PanelColorSettings, withColors } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, TextareaControl, ToggleControl, Flex, FlexBlock, FlexItem, TextControl, __experimentalNumberControl as NumberControl, __experimentalUnitControl as UnitControl, Icon } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 
 /**
@@ -44,8 +44,21 @@ function SliderEdit( {
 } ) {
 	const blockProps = useBlockProps();
 	const BLOCK_TEMPLATE = [ 
-		[ 'emma/slide', {} ]
+		[ 'emma/slide' ]
 	];
+	const ALLOWED_BLOCKS = [
+		[ 'emma/slide' ]
+	];
+	const DEFAULT_BLOCK = {
+		name: 'emma/slide',
+	};
+	const innerBlocksProps = useInnerBlocksProps( blockProps, {
+		allowedBlocks: ALLOWED_BLOCKS,
+		__experimentalDefaultBlock: DEFAULT_BLOCK,
+		__experimentalDirectInsert: true,
+		template: BLOCK_TEMPLATE,
+		templateInsertUpdatesSelection: true
+	} );
 	var html = ( html ) => wp.element.RawHTML( { children: html } );
 	const colors = useSelect('core/block-editor').getSettings().colors;
 
@@ -116,10 +129,6 @@ function SliderEdit( {
 		)
 	}
 
-	const handleOnChange = ( unprocessedValue ) => {
-		onChange( unprocessedValue.all );
-	};
-
 	return (
 		<>
 			<InspectorControls>
@@ -148,15 +157,13 @@ function SliderEdit( {
 							setAttributes( { autoplayInterval: parseFloat( value ) || '' } )
 						}
 					/>
-					<SpacingSizesControl
-						values={ { all: attributes.slideGap } }
-						onChange={ ( values ) => 
-							setAttributes( { slideGap: values.all } )
-						}
+					<UnitControl
 						label={ 'Gap Between Slides' }
-						sides={ [ 'all' ] }
-						allowReset={ false }
-						splitOnAxis={ false }
+						value={ attributes.slideGap }
+						unit={ 'rem' }
+						onChange={ ( value ) => 
+							setAttributes( { slideGap: value } )
+						}
 					/>
 				</PanelBody>
 				<PanelBody
@@ -230,15 +237,7 @@ function SliderEdit( {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div { ...blockProps } role="group">
-				<div class="splide__track">
-					<ul class="splide__list">
-						<InnerBlocks
-							template={ BLOCK_TEMPLATE }
-						/>
-					</ul>
-				</div>
-			</div>
+			<div { ...innerBlocksProps  } role="group"></div>
 		</>
 	);
 }

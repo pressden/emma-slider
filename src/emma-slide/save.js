@@ -24,7 +24,7 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
  */
 export default function save() {
 	const blockProps = useBlockProps.save( {
-		className: 'splide__slide'
+		className: 'splide__slide emma-container'
 	} );
 
 	return (

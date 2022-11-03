@@ -2,34 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/query-title.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/query-title.js ***!
-  \***************************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-
-/**
- * WordPress dependencies
- */
-
-const queryTitle = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
-  viewBox: "0 0 24 24",
-  xmlns: "http://www.w3.org/2000/svg"
-}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M4 20h9v-1.5H4V20zm0-5.5V16h16v-1.5H4zm1.3-2.9c.6.3 1.3.5 2 .5.8 0 1.4-.2 2-.5.1 0 .1-.1.2-.2l.8.7.9-1-.8-.7.3-.3a5.09 5.09 0 0 0 0-4.4c-.2-.6-.7-1-1.3-1.4-.6-.3-1.3-.5-2-.5-.8 0-1.4.2-2 .5-.7.4-1.1.8-1.5 1.5-.3.6-.5 1.3-.5 2.2 0 .8.2 1.6.5 2.2.4.6.8 1.1 1.4 1.4zm-.1-5c.2-.4.5-.7.8-1s.8-.4 1.3-.4 1 .1 1.3.4.6.6.8 1c.3.4.4.8.4 1.4 0 .5-.1 1-.3 1.4v.1l-1-.9-.9 1 .9.9c-.3.2-.7.3-1.2.3s-1-.1-1.3-.4c-.4-.2-.6-.6-.8-1C5 9 4.9 8.5 4.9 8c0-.6.1-1 .3-1.4z"
-}));
-/* harmony default export */ __webpack_exports__["default"] = (queryTitle);
-//# sourceMappingURL=query-title.js.map
-
-/***/ }),
-
 /***/ "./src/emma-slider/edit.js":
 /*!*********************************!*\
   !*** ./src/emma-slider/edit.js ***!
@@ -100,7 +72,18 @@ function SliderEdit(_ref) {
     setCurrentPageColor
   } = _ref;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)();
-  const BLOCK_TEMPLATE = [['emma/slide', {}]];
+  const BLOCK_TEMPLATE = [['emma/slide']];
+  const ALLOWED_BLOCKS = [['emma/slide']];
+  const DEFAULT_BLOCK = {
+    name: 'emma/slide'
+  };
+  const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)(blockProps, {
+    allowedBlocks: ALLOWED_BLOCKS,
+    __experimentalDefaultBlock: DEFAULT_BLOCK,
+    __experimentalDirectInsert: true,
+    template: BLOCK_TEMPLATE,
+    templateInsertUpdatesSelection: true
+  });
 
   var html = html => wp.element.RawHTML({
     children: html
@@ -167,10 +150,6 @@ function SliderEdit(_ref) {
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FlexItem, null, "phone")));
   }
 
-  const handleOnChange = unprocessedValue => {
-    onChange(unprocessedValue.all);
-  };
-
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('General Settings')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SelectControl, {
@@ -198,17 +177,13 @@ function SliderEdit(_ref) {
     onChange: value => setAttributes({
       autoplayInterval: parseFloat(value) || ''
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.__experimentalSpacingSizesControl, {
-    values: {
-      all: attributes.slideGap
-    },
-    onChange: values => setAttributes({
-      slideGap: values.all
-    }),
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.__experimentalUnitControl, {
     label: 'Gap Between Slides',
-    sides: ['all'],
-    allowReset: false,
-    splitOnAxis: false
+    value: attributes.slideGap,
+    unit: 'rem',
+    onChange: value => setAttributes({
+      slideGap: value
+    })
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Slides per Page'),
     initialOpen: false
@@ -266,15 +241,9 @@ function SliderEdit(_ref) {
     onChange: value => setAttributes({
       settingsJSON: value
     })
-  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, blockProps, {
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, innerBlocksProps, {
     role: "group"
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
-    class: "splide__track"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
-    class: "splide__list"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InnerBlocks, {
-    template: BLOCK_TEMPLATE
-  })))));
+  })));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ((0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.compose)([(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.withColors)({
@@ -294,7 +263,6 @@ function SliderEdit(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/query-title.js");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/emma-slider/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/emma-slider/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/emma-slider/save.js");
@@ -303,7 +271,6 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -327,8 +294,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('emma/slider', {
-  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"],
-
   /**
    * @see ./edit.js
    */
@@ -465,6 +430,10 @@ function save(_ref) {
     settings.interval = attributes.autoplayInterval * 1000;
   }
 
+  if (attributes.slideGap) {
+    settings.gap = attributes.slideGap;
+  }
+
   var manualSettings = "{" + attributes.settingsJSON + "}";
 
   if (isJSONString(manualSettings)) {
@@ -584,16 +553,6 @@ module.exports = window["wp"]["element"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["i18n"];
-
-/***/ }),
-
-/***/ "@wordpress/primitives":
-/*!************************************!*\
-  !*** external ["wp","primitives"] ***!
-  \************************************/
-/***/ (function(module) {
-
-module.exports = window["wp"]["primitives"];
 
 /***/ }),
 

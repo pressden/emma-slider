@@ -89,6 +89,10 @@
 		settings.autoplay = true;
 		settings.interval = attributes.autoplayInterval * 1000
 	}
+
+	if( attributes.slideGap ) {
+		settings.gap = attributes.slideGap;
+	}
  
 	var manualSettings = "{" + attributes.settingsJSON + "}";
 	if( isJSONString( manualSettings ) ) {
