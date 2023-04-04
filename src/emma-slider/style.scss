@@ -7,10 +7,6 @@
 		padding-bottom: 2rem;
 	}
 
-	&.has-outer-arrows {
-		width: calc( 100% - var(--layout-spacer-x) * 2 - 70px );
-	}
-
 	button {
 		&.ignore-theme {
 			cursor: pointer;
@@ -20,6 +16,14 @@
 				outline-offset: 3px;
 				outline-color: currentColor;
 			}
+		}
+	}
+}
+
+body { //used to increase specificity
+	.splide {
+		&.has-outer-arrows {
+			width: calc( 100% - var(--layout-spacer-x) * 2 - 70px );
 		}
 	}
 }
