@@ -1,13 +1,12 @@
 <?php
 /**
  * Plugin Name:       Emma Slider
- * Description:       Example block written with ESNext standard and JSX support – build/emma-faq step required.
- * Requires at least: 5.8
- * Requires PHP:      7.0
- * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Description:       Emma Slider is a WordPress plugin that adds a slider block to the Gutenberg editor for the Emma theme.
+ * Version:           3.1.0
+ * Author: 						Eric Michel
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Author URI: 				https://github.com/pressden
  * Text Domain:       emma-slider
  *
  * @package           create-block

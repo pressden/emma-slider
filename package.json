@@ -1,6 +1,6 @@
 {
 	"name": "emma-slider",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Example block written with ESNext standard and JSX support – build step required.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
@@ -15,10 +15,10 @@
 		"start": "wp-scripts start"
 	},
 	"devDependencies": {
-		"@wordpress/icons": "^8.2.0",
-		"@wordpress/scripts": "^22.4.0"
+		"@wordpress/icons": "^9.31.0",
+		"@wordpress/scripts": "^26.11.0"
 	},
 	"dependencies": {
-		"@splidejs/splide": "^4.0.1"
+		"@splidejs/splide": "^4.1.3"
 	}
 }
